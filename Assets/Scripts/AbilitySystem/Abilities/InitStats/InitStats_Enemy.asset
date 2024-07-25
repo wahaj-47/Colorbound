@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b8c1affa4eb702429fbe6e68db04dc5, type: 3}
-  m_Name: Ability_FireCut
+  m_Script: {fileID: 11500000, guid: 60c84324d6a17a647ab8bd8d67e408d1, type: 3}
+  m_Name: InitStats_Enemy
   m_EditorClassIdentifier: 
-  AbilityName: 
+  AbilityName: InitStats_Player
   AbilityTags:
     AssetTag: {fileID: 0}
     CancelAbilitiesWithTags: []
@@ -28,10 +28,6 @@ MonoBehaviour:
       RequireTags: []
       IgnoreTags: []
   Cost: {fileID: 0}
-  Cooldown: {fileID: 11400000, guid: 29fe9c13a393d6e47bda27210f2158e8, type: 2}
-  Damage: 0
-  Range: 0
-  Layers:
-    serializedVersion: 2
-    m_Bits: 64
-  GameplayEffect: {fileID: 0}
+  Cooldown: {fileID: 0}
+  InitialisationGE:
+  - {fileID: 11400000, guid: e2030fe82c5af7b48b32d20745af8dff, type: 2}

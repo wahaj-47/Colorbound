@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36fd283322353ff42b30cd679073251e, type: 3}
-  m_Name: GE_Init
+  m_Name: GE_InitPlayer
   m_EditorClassIdentifier: 
   gameplayEffect:
     DurationPolicy: 0

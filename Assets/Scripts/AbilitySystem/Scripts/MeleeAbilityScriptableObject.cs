@@ -105,6 +105,7 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
             Collider[] outHits = Physics.OverlapSphere(_attackPoint.position, (this.Ability as MeleeAbilityScriptableObject).Range, (this.Ability as MeleeAbilityScriptableObject).Layers);
             foreach (Collider hitObject in outHits)
             {
+                Debug.Log($"Hit: {hitObject.name}");
                 (hitObject as IDamageable).Damage((this.Ability as MeleeAbilityScriptableObject).Damage);
             }
         }

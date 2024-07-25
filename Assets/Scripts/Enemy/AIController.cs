@@ -1,0 +1,115 @@
+using System.Collections;
+using System.Collections.Generic;
+using AbilitySystem;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class AIController : MonoBehaviour
+{
+    private NavMeshAgent Agent;
+    private CharacterMovement CharacterMovement;
+    private CharacterAnimation CharacterAnimation;
+    private AbilitySystemCharacter AbilitySystemComponent;
+    private PlayerCharacterInputs _characterInputs;
+
+    private void Awake()
+    {
+        if(!gameObject.TryGetComponent<NavMeshAgent>(out NavMeshAgent outAgent))
+        {
+            Debug.Log("Missing navigation component");
+            return;
+        }
+
+        if(!gameObject.TryGetComponent<CharacterMovement>(out CharacterMovement outCharacterMovement))
+        {
+            Debug.Log("Missing movement component");
+            return;
+        }
+
+        if(!gameObject.TryGetComponent<CharacterAnimation>(out CharacterAnimation outCharacterAnimation))
+        {
+            Debug.Log("Animation component missing");
+            return;
+        }
+
+        if(!gameObject.TryGetComponent<AbilitySystemCharacter>(out AbilitySystemCharacter outAbilitySystemComponent))
+        {
+            Debug.Log("Missing ability system component");
+            return;
+        }
+
+        Agent = outAgent;
+        CharacterMovement = outCharacterMovement;
+        CharacterAnimation = outCharacterAnimation;
+        AbilitySystemComponent = outAbilitySystemComponent;
+    }
+
+    private void Start()
+    {
+        Agent.updatePosition = false;
+        Agent.updateRotation = false;
+        _characterInputs = new PlayerCharacterInputs();
+    }
+
+    private void Update()
+    {
+        Agent.nextPosition = transform.position;
+        Move();
+    }
+
+    public void Move()
+    {
+        Vector3 moveDirection = Agent.velocity.magnitude < 1 ? Vector3.zero : Agent.velocity;
+
+        // Build the CharacterInputs struct
+        _characterInputs.MoveAxisForward =  moveDirection.z;
+        _characterInputs.MoveAxisRight =  moveDirection.x;
+
+        // Apply inputs to character
+        CharacterMovement.SetInputs(ref _characterInputs);
+        // Apply inputs to animator
+        CharacterAnimation.SetParams(ref _characterInputs);
+    }
+
+    public void Jump()
+    {
+        _characterInputs.JumpDown = true;
+
+        // Apply inputs to character
+        CharacterMovement.SetInputs(ref _characterInputs);
+
+        // Reset input 
+        // This is to force the player to trigger the action again
+        _characterInputs.JumpDown = false;
+        CharacterMovement.SetInputs(ref _characterInputs);
+    }
+
+    public void Dash()
+    {
+        _characterInputs.DashDown = true;
+
+        // Apply inputs to character
+        CharacterMovement.SetInputs(ref _characterInputs);
+
+        // Reset input 
+        // This is to force the player to trigger the action again
+        _characterInputs.DashDown = false;
+        CharacterMovement.SetInputs(ref _characterInputs);
+    }
+
+    public void AbilityOne()
+    {
+    }
+
+    public void AbilityTwo()
+    {
+    }
+
+    public void AbiliyThree()
+    {
+    }
+
+    public void AbilityFour()
+    {
+    }
+}

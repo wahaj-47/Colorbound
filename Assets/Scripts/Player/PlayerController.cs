@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
     private AbilitySystemCharacter AbilitySystemComponent;
     private PlayerCharacterInputs _characterInputs;
 
-    public AbstractAbilityScriptableObject ability;
-
     public void SetPlayerId(int playerId)
     {
         _playerId = playerId;
@@ -34,16 +32,6 @@ public class PlayerController : MonoBehaviour
         GameObject character = CharacterManager.instance.GetCharacter(0);
         Possess(character);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Period))
-        {
-            AbstractAbilitySpec abilitySpec = ability.CreateSpec(AbilitySystemComponent);
-            StartCoroutine(abilitySpec.TryActivateAbility());
-        }
-    }
-
     private void Possess(GameObject character)
     {
         if(!character)
