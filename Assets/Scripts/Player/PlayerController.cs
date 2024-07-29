@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("No character to possess");
             return;
         }
-
         
         if(!character.TryGetComponent<CharacterMovement>(out var outCharacterMovement))
         {

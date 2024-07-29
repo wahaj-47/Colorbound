@@ -12,7 +12,7 @@ public class AICombatState : AIState
 
     public override void EnterState()
     {
-        Debug.Log("Combat state");
+        Debug.Log($"{StateMachine.name}: Combat state");
         base.EnterState();
 
         (StateMachine as AIStateMachine).Controller.Hunt();
@@ -31,8 +31,13 @@ public class AICombatState : AIState
 
             if(dangerDetected)
             {
-                agent.velocity *= -1;
-                (StateMachine as AIStateMachine).Controller.Dash();
+                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.melee.Range * 1.2f))
+                {
+                    agent.velocity *= -1;
+                    // (StateMachine as AIStateMachine).Controller.Jump();
+                    (StateMachine as AIStateMachine).Controller.Dash();
+                }
+                
                 dangerDetected = false;
             }
 

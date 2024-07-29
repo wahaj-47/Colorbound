@@ -17,7 +17,7 @@ public class AIPatrolState : AIState
 
     public override void EnterState()
     {
-        Debug.Log("Patrol State");
+        Debug.Log($"{StateMachine.name}: Patrol State");
 
         base.EnterState();
 

@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
     private PlayerCharacterInputs _characterInputs;
     private AbilityManager CharacterAbilityManager;
 
-    private void Awake()
+    private void OnEnable()
     {
         if(!gameObject.TryGetComponent<NavMeshAgent>(out var outAgent))
         {

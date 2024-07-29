@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Fire Cut
   AbilityTags:
-    AssetTag: {fileID: 0}
+    AssetTag: {fileID: 11400000, guid: 779fd8a94ff029f40beaaec12a2783bb, type: 2}
     CancelAbilitiesWithTags: []
     BlockAbilitiesWithTags: []
     ActivationOwnedTags: []

@@ -27,6 +27,26 @@ MonoBehaviour:
       ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
         type: 2}
       Multiplier: 100
+    - Attribute: {fileID: 11400000, guid: d6006348e393abb44a0990ca213d710d, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
+        type: 2}
+      Multiplier: 0
+    - Attribute: {fileID: 11400000, guid: 14633aff4b81cd64ab26351be4b6a3de, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
+        type: 2}
+      Multiplier: 10
+    - Attribute: {fileID: 11400000, guid: d83a59c7f885e4147af5dfa8f8f2cace, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
+        type: 2}
+      Multiplier: 300
+    - Attribute: {fileID: 11400000, guid: 088ada55d35bbe1498a1afe02414fc1a, type: 2}
+      ModifierOperator: 0
+      ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
+        type: 2}
+      Multiplier: 10
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 0}
