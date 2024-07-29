@@ -6,10 +6,10 @@ using AbilitySystem.Authoring;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Colorbound Ability")]
+[CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Melee Attack Ability")]
 public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
 {
-    public float Damage;
+    public GameplayEffectScriptableObject Damage;
     public float Range;
     public LayerMask Layers;
     /// <summary>
@@ -40,13 +40,19 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
 
         public MeleeAbilitySpec(AbstractAbilityScriptableObject abilitySO, AbilitySystemCharacter owner) : base(abilitySO, owner)
         {
-            _attackPoint = owner.transform.Find("AttackPoint_Melee");
+            _attackPoint = Owner.transform.Find("AttackPoint_Melee");
+            if(_attackPoint == null)
+            {
+                Debug.Log("Failed to find attack point");
+            }
         }
 
         /// <summary>
         /// What to do when the ability is cancelled.  We don't care about there for this example.
         /// </summary>
-        public override void CancelAbility() { }
+        public override void CancelAbility() 
+        {
+        }
 
         /// <summary>
         /// What happens when we activate the ability.
@@ -68,7 +74,25 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
             var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as MeleeAbilityScriptableObject).GameplayEffect);
             this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
 
-            Attack();
+            if(_attackPoint == null)
+            {
+                Debug.Log("Missing attack point");
+                yield break;
+            }
+
+            Collider[] outHits = Physics.OverlapSphere(_attackPoint.position, (this.Ability as MeleeAbilityScriptableObject).Range, (this.Ability as MeleeAbilityScriptableObject).Layers);
+            foreach (Collider hitObject in outHits)
+            {
+                if(hitObject.TryGetComponent<IDamageable>(out var damageable))
+                {
+                    if(hitObject.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
+                    {
+                        // Adding impulse to the hit object
+                        CharacterMovementComponent.AddVelocity(Owner.transform.forward * 10.0f);
+                    }
+                    damageable.Damage((this.Ability as MeleeAbilityScriptableObject).Damage, Owner.gameObject);
+                }
+            }
 
             yield return null;
         }
@@ -98,16 +122,6 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
         protected override IEnumerator PreActivate()
         {
             yield return null;
-        }
-
-        public virtual void Attack()
-        {
-            Collider[] outHits = Physics.OverlapSphere(_attackPoint.position, (this.Ability as MeleeAbilityScriptableObject).Range, (this.Ability as MeleeAbilityScriptableObject).Layers);
-            foreach (Collider hitObject in outHits)
-            {
-                Debug.Log($"Hit: {hitObject.name}");
-                (hitObject as IDamageable).Damage((this.Ability as MeleeAbilityScriptableObject).Damage);
-            }
         }
     }
 }

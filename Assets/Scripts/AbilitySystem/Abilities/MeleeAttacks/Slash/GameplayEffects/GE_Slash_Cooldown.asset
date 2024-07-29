@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fd283322353ff42b30cd679073251e, type: 3}
+  m_Name: GE_Slash_Cooldown
+  m_EditorClassIdentifier: 
+  gameplayEffect:
+    DurationPolicy: 2
+    DurationModifier: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81, type: 2}
+    DurationMultiplier: 2
+    Modifiers: []
+    ConditionalGameplayEffects: []
+  gameplayEffectTags:
+    AssetTag: {fileID: 11400000, guid: a117dba1b315b344db326e7609fd837b, type: 2}
+    GrantedTags:
+    - {fileID: 11400000, guid: a117dba1b315b344db326e7609fd837b, type: 2}
+    OngoingTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    ApplicationTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemovalTagRequirements:
+      RequireTags: []
+      IgnoreTags: []
+    RemoveGameplayEffectsWithTag: []
+  Period:
+    Period: 0
+    ExecuteOnApplication: 0

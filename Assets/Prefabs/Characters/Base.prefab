@@ -146,11 +146,11 @@ Transform:
   m_GameObject: {fileID: 6586363853682137648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7555858141726946245}
+  m_Father: {fileID: 2531383979886204848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6661160245564991417
 GameObject:
@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 5974868553382983923}
   - component: {fileID: 186110987828658539}
   - component: {fileID: 2337416944103483778}
+  - component: {fileID: 7672273178644595301}
   m_Layer: 3
   m_Name: Base
   m_TagString: Player
@@ -191,6 +192,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3263097206049051581}
   - {fileID: 7555858141726946245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -371,7 +373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttributeSystemEvents:
-  - {fileID: 11400000, guid: 91c6b10ced9bc744f88b1ebafc61d966, type: 2}
   - {fileID: 11400000, guid: 67d5281e5200e124b957a827822cf4af, type: 2}
   Attributes:
   - {fileID: 11400000, guid: 58ebc3363e3e7c943b33769f8e2f9e38, type: 2}
@@ -422,6 +423,23 @@ MonoBehaviour:
   dual_A: {fileID: 0}
   dual_B: {fileID: 0}
   triple: {fileID: 0}
+  hunt: {fileID: 0}
+--- !u!208 &7672273178644595301
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661160245564991417}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 3.5, y: 0.525, z: 3.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.54, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7276566942904918645
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +678,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7117743617765641482}
-  - {fileID: 3263097206049051581}
   m_Father: {fileID: 2531383979886204848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b8c1affa4eb702429fbe6e68db04dc5, type: 3}
-  m_Name: Ability_FireCut
+  m_Name: Ability_Slash
   m_EditorClassIdentifier: 
-  AbilityName: Fire Cut
+  AbilityName: Slash
   AbilityTags:
-    AssetTag: {fileID: 0}
+    AssetTag: {fileID: 11400000, guid: 8aba5ce8253b0864eb85f1a2a8d769a7, type: 2}
     CancelAbilitiesWithTags: []
     BlockAbilitiesWithTags: []
     ActivationOwnedTags: []
     OwnerTags:
       RequireTags: []
-      IgnoreTags: []
+      IgnoreTags:
+      - {fileID: 11400000, guid: 8aba5ce8253b0864eb85f1a2a8d769a7, type: 2}
     SourceTags:
       RequireTags: []
       IgnoreTags: []
@@ -28,10 +29,10 @@ MonoBehaviour:
       RequireTags: []
       IgnoreTags: []
   Cost: {fileID: 11400000, guid: 7c43598eb4552564f8f39e80b933c6d5, type: 2}
-  Cooldown: {fileID: 11400000, guid: 29fe9c13a393d6e47bda27210f2158e8, type: 2}
-  Damage: {fileID: 11400000, guid: bf1af9a038c172648ba0ff86c9ff6db0, type: 2}
+  Cooldown: {fileID: 11400000, guid: 7c10757aab690b24098d2fdc475cb4f8, type: 2}
+  Damage: {fileID: 11400000, guid: b8c4f105952ac354f91857e3361504a8, type: 2}
   Range: 1
   Layers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   GameplayEffect: {fileID: 11400000, guid: 7c43598eb4552564f8f39e80b933c6d5, type: 2}

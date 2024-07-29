@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using AbilitySystem.Authoring;
 using UnityEngine;
 
 public interface IDamageable
 {
-    float Damage(float amount);
+    void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator);
 }

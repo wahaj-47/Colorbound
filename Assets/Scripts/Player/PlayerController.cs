@@ -1,6 +1,7 @@
 using AbilitySystem;
 using AbilitySystem.Authoring;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _currentCharacter;
     private CharacterMovement CharacterMovement;
     private CharacterAnimation CharacterAnimation;
-    private AbilitySystemCharacter AbilitySystemComponent;
+    private AbilityManager CharacterAbilityManager;
     private PlayerCharacterInputs _characterInputs;
 
     public void SetPlayerId(int playerId)
@@ -41,27 +42,27 @@ public class PlayerController : MonoBehaviour
         }
 
         
-        if(!character.TryGetComponent<CharacterMovement>(out CharacterMovement outCharacterMovement))
+        if(!character.TryGetComponent<CharacterMovement>(out var outCharacterMovement))
         {
             Debug.Log("Missing movement component");
             return;
         }
 
-        if(!character.TryGetComponent<CharacterAnimation>(out CharacterAnimation outCharacterAnimation))
+        if(!character.TryGetComponent<CharacterAnimation>(out var outCharacterAnimation))
         {
             Debug.Log("Animation component missing");
             return;
         }
 
-        if(!character.TryGetComponent<AbilitySystemCharacter>(out var outAbilitySystemComponent))
+        if(!character.TryGetComponent<AbilityManager>(out var outCharacterAbilityManager))
         {
-            Debug.Log("Missing ability system component");
+            Debug.Log("Missing ability manager component");
             return;
         }
 
         CharacterMovement = outCharacterMovement;        
         CharacterAnimation = outCharacterAnimation;
-        AbilitySystemComponent = outAbilitySystemComponent;
+        CharacterAbilityManager = outCharacterAbilityManager;
 
         CharacterMovement.SetInputs(ref _characterInputs);
         CharacterAnimation.SetParams(ref _characterInputs);
@@ -150,6 +151,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnAbilityOne(InputAction.CallbackContext context)
     {
+        if(context.performed)
+        {
+            CharacterAbilityManager.Melee();
+        }
     }
 
     public void OnAbilityTwo(InputAction.CallbackContext context)

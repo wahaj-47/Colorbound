@@ -11,7 +11,7 @@ public abstract class BaseState
         StateMachine = stateMachine;
     }
     
-    public virtual void EnterState() { }
-    public virtual void UpdateState() { }
+    public virtual void EnterState() {}
+    public virtual void UpdateState() {}
     public virtual void ExitState() {}
 }

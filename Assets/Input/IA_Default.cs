@@ -245,7 +245,7 @@ public partial class @IA_Default: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f1de903c-2859-4108-bb52-208a8dd19c8d"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -267,7 +267,7 @@ public partial class @IA_Default: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8cc177aa-4da1-44ea-8fe0-e5546406c77a"",
-                    ""path"": ""<Keyboard>/1"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -311,7 +311,7 @@ public partial class @IA_Default: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2ae1711d-342e-4184-bd61-65b47d9f28f2"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -333,7 +333,7 @@ public partial class @IA_Default: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cfe41675-5e15-4585-a724-d449ae98cc14"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
