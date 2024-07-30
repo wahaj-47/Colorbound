@@ -152,19 +152,31 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed)
         {
-            CharacterAbilityManager.Melee();
+            CharacterAbilityManager.Perform(AbilityManager.EAbility.One);
         }
     }
 
     public void OnAbilityTwo(InputAction.CallbackContext context)
     {
+        if(context.performed)
+        {
+            CharacterAbilityManager.Perform(AbilityManager.EAbility.Two);
+        }
     }
 
     public void OnAbiliyThree(InputAction.CallbackContext context)
     {
+        if(context.performed)
+        {
+            CharacterAbilityManager.Perform(AbilityManager.EAbility.Three);
+        }
     }
 
     public void OnAbilityFour(InputAction.CallbackContext context)
     {
+        if(context.performed)
+        {
+            CharacterAbilityManager.Perform(AbilityManager.EAbility.Four);
+        }
     }
 }

@@ -19,6 +19,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e23e506b8046d854f9b7253c3a93fba2,
         type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: abilityOne
+      value: 
+      objectReference: {fileID: 11400000, guid: e23e506b8046d854f9b7253c3a93fba2,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: abilityTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: b012ea641f3fcaf43b6b662af4c4f40b,
+        type: 2}
     - target: {fileID: 2531383979886204848, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}
       propertyPath: m_LocalPosition.x

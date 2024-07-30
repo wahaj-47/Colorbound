@@ -31,7 +31,7 @@ public class AICombatState : AIState
 
             if(dangerDetected)
             {
-                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.melee.Range * 1.2f))
+                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.abilityOne.Range * 1.2f))
                 {
                     agent.velocity *= -1;
                     // (StateMachine as AIStateMachine).Controller.Jump();
@@ -43,9 +43,9 @@ public class AICombatState : AIState
 
             if(!didAttack)
             {
-                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.melee.Range))
+                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.abilityOne.Range))
                 {
-                    StateMachine.StartCoroutine(Melee());
+                    StateMachine.StartCoroutine(AbilityOne());
                 }
             }
         }
@@ -63,7 +63,7 @@ public class AICombatState : AIState
         didAttack = false;
     }
 
-    private IEnumerator Melee()
+    private IEnumerator AbilityOne()
     {
         // Performed melee
         didAttack = true;

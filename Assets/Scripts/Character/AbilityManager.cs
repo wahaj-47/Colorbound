@@ -6,15 +6,19 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+
 [RequireComponent(typeof(AbilitySystemCharacter))]
 public class AbilityManager : MonoBehaviour, IDamageable
 {
+    public enum EAbility {One, Two, Three, Four};
+
     [Header("Attacks")]
-    public MeleeAbilityScriptableObject melee;
-    public MeleeAbilityScriptableObject ranged;
-    public MeleeAbilityScriptableObject dual_A;
-    public MeleeAbilityScriptableObject dual_B;
-    public MeleeAbilityScriptableObject triple;
+    public MeleeAbilityScriptableObject abilityOne;
+    public RangedAbilityScriptableObject abilityTwo;
+    public MeleeAbilityScriptableObject abilityThree_A;
+    public MeleeAbilityScriptableObject abilityThree_B;
+    public MeleeAbilityScriptableObject abilityThree_C;
+    public MeleeAbilityScriptableObject abilityFour;
 
     [Header("Events")]
     public UnityEvent attackEvent;
@@ -34,17 +38,36 @@ public class AbilityManager : MonoBehaviour, IDamageable
         if(attackEvent == null) attackEvent = new UnityEvent();
     }
 
-    public void Hunt()
+    public void Perform(EAbility attack)
     {
-        AbstractAbilitySpec abilitySpec = hunt.CreateSpec(AbilitySystemComponent);
+        AbstractAbilitySpec abilitySpec;
+
+        switch (attack)
+        {
+            case EAbility.One:
+                abilitySpec = abilityOne.CreateSpec(AbilitySystemComponent);
+                break;
+            case EAbility.Two:
+                abilitySpec = abilityTwo.CreateSpec(AbilitySystemComponent);
+                break;
+            case EAbility.Three:
+                // @TODO: Decide which ability to activate based on active gameplay tags
+                abilitySpec = abilityThree_A.CreateSpec(AbilitySystemComponent);
+                break;
+            case EAbility.Four:
+                abilitySpec = abilityFour.CreateSpec(AbilitySystemComponent);
+                break;
+            default:
+                abilitySpec = abilityOne.CreateSpec(AbilitySystemComponent);
+                break;
+        }
+
         StartCoroutine(abilitySpec.TryActivateAbility());
     }
 
-    public void Melee()
+    public void Hunt()
     {
-        attackEvent.Invoke();
-        
-        AbstractAbilitySpec abilitySpec = melee.CreateSpec(AbilitySystemComponent);
+        AbstractAbilitySpec abilitySpec = hunt.CreateSpec(AbilitySystemComponent);
         StartCoroutine(abilitySpec.TryActivateAbility());
     }
 
@@ -68,4 +91,5 @@ public class AbilityManager : MonoBehaviour, IDamageable
 
         yield break;
     }
+
 }

@@ -450,11 +450,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaf7fdeba4db7948846d868c3ca65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  melee: {fileID: 0}
-  ranged: {fileID: 0}
-  dual_A: {fileID: 0}
-  dual_B: {fileID: 0}
-  triple: {fileID: 0}
+  abilityOne: {fileID: 0}
+  abilityTwo: {fileID: 0}
+  abilityThree_A: {fileID: 0}
+  abilityThree_B: {fileID: 0}
+  abilityThree_C: {fileID: 0}
+  abilityFour: {fileID: 0}
   attackEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5332821736692626217}
   - component: {fileID: 1620789256683997836}
   - component: {fileID: 1857643628541433827}
+  - component: {fileID: 4798808502629306821}
   m_Layer: 0
   m_Name: RangedAttack
   m_TagString: Untagged
@@ -611,7 +612,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4888,3 +4889,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4798808502629306821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904969633916089562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec2eac685bf9564bb0c6b1bc96dc5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageEffect: {fileID: 0}
+  instigator: {fileID: 0}
+  whatIsDamaged:
+    serializedVersion: 2
+    m_Bits: 0

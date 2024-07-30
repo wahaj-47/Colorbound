@@ -105,18 +105,21 @@ public class AIController : MonoBehaviour
     }
     public void AbilityOne()
     {
-        CharacterAbilityManager.Melee();
+        CharacterAbilityManager.Perform(AbilityManager.EAbility.One);
     }
 
     public void AbilityTwo()
     {
+        CharacterAbilityManager.Perform(AbilityManager.EAbility.Two);
     }
 
     public void AbiliyThree()
     {
+        CharacterAbilityManager.Perform(AbilityManager.EAbility.Three);
     }
 
     public void AbilityFour()
     {
+        CharacterAbilityManager.Perform(AbilityManager.EAbility.Four);
     }
 }
