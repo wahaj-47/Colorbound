@@ -82,7 +82,8 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
 
             this.Owner.Instantiate(
                 (this.Ability as RangedAbilityScriptableObject).AttackPrefab, // Particle effect to spawn
-                _attackPoint, // Parent object
+                _attackPoint.transform.position, // Instigator position
+                _attackPoint.transform.rotation, // Instigator rotation
                 true, // Instantiate in world space
                 (this.Ability as RangedAbilityScriptableObject).Damage, // Damage effect to apply
                 this.Owner.gameObject, // Instigator

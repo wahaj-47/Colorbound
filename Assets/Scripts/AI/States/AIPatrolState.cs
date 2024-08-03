@@ -50,6 +50,9 @@ public class AIPatrolState : AIState
     {
         idling = false;
         patrolPoint = RandomReachablePointInRadius(radius, (StateMachine as AIStateMachine).spawnPosition);
+
+        if(!agent.isActiveAndEnabled || !agent.isOnNavMesh) return;
+
         agent.destination = patrolPoint;
     }
 

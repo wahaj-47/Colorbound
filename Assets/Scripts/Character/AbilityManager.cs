@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using AbilitySystem;
 using AbilitySystem.Authoring;
+using GameplayTag.Authoring;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -11,6 +11,12 @@ using UnityEngine.Events;
 public class AbilityManager : MonoBehaviour, IDamageable
 {
     public enum EAbility {One, Two, Three, Four};
+    
+    [Header("Type")]
+    public GameplayTagScriptableObject typeTag;
+
+    [Header("Masks")]
+    public LayerMask whatIsPlayer;
 
     [Header("Attacks")]
     public MeleeAbilityScriptableObject abilityOne;
@@ -45,24 +51,25 @@ public class AbilityManager : MonoBehaviour, IDamageable
         switch (attack)
         {
             case EAbility.One:
-                abilitySpec = abilityOne.CreateSpec(AbilitySystemComponent);
+                abilitySpec = abilityOne ? abilityOne.CreateSpec(AbilitySystemComponent) : null;
                 break;
             case EAbility.Two:
-                abilitySpec = abilityTwo.CreateSpec(AbilitySystemComponent);
+                abilitySpec = abilityTwo ? abilityTwo.CreateSpec(AbilitySystemComponent) : null;
                 break;
             case EAbility.Three:
                 // @TODO: Decide which ability to activate based on active gameplay tags
-                abilitySpec = abilityThree_A.CreateSpec(AbilitySystemComponent);
+                abilitySpec = abilityThree_A ? abilityThree_A.CreateSpec(AbilitySystemComponent) : null;
                 break;
             case EAbility.Four:
-                abilitySpec = abilityFour.CreateSpec(AbilitySystemComponent);
+                abilitySpec = abilityFour ? abilityFour.CreateSpec(AbilitySystemComponent) : null;
                 break;
             default:
-                abilitySpec = abilityOne.CreateSpec(AbilitySystemComponent);
+                abilitySpec = abilityOne ? abilityOne.CreateSpec(AbilitySystemComponent) : null;
                 break;
         }
 
-        StartCoroutine(abilitySpec.TryActivateAbility());
+        if(abilitySpec != null)
+            StartCoroutine(abilitySpec.TryActivateAbility());
     }
 
     public void Hunt()
@@ -74,9 +81,11 @@ public class AbilityManager : MonoBehaviour, IDamageable
     public void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator)
     {
         GameplayEffectSpec damageEffectSpec = AbilitySystemComponent.MakeOutgoingSpec(damageEffect);
+        
+        if(damageEffect.gameplayEffectTags.AssetTag.Parent == typeTag) return;
+        
         AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(damageEffectSpec);
-
-        if(tag == "Player")
+        if((whatIsPlayer.value & (1 << gameObject.layer)) > 0)
             StartCoroutine(Immune());
     }
 

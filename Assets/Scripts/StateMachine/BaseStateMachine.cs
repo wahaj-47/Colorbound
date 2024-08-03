@@ -7,6 +7,17 @@ public class BaseStateMachine : MonoBehaviour
     private BaseState _currentState;
     public BaseState CurrentState => _currentState;
 
+    public virtual void OnEnable()
+    {
+        _currentState = GetInitialState();
+        _currentState?.EnterState();
+    }
+
+    public virtual void OnDisable()
+    {
+        _currentState?.ExitState();
+    }
+
     public virtual void Start()
     {
         _currentState = GetInitialState();

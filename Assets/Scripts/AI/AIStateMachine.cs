@@ -34,9 +34,12 @@ public class AIStateMachine : BaseStateMachine
     public AIState PatrolState;
     public AIState CombatState;
 
-    private void Awake()
+    public override void OnEnable()
     {
+        base.OnEnable();
+
         spawnPosition = transform.position;
+
         PatrolState = new AIPatrolState(this);
         CombatState = new AICombatState(this);
     }

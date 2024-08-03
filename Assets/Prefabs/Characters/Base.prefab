@@ -280,7 +280,7 @@ MonoBehaviour:
   Motor: {fileID: 8572215790216454}
   MaxStableMoveSpeed: 5
   StableMovementSharpness: 15
-  OrientationSharpness: 10
+  OrientationSharpness: 100
   MaxAirMoveSpeed: 5
   AirAccelerationSpeed: 5
   Drag: 0.1
@@ -725,12 +725,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -610371485, guid: 5be09ec7749b96c41a6f5a38bc8e6ea3, type: 3}
+  m_Sprite: {fileID: -1489522276, guid: 03eb967b723dfe24186d06a172727190, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.17}
+  m_Size: {x: 0.8125, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

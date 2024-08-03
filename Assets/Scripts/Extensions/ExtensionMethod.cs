@@ -5,12 +5,9 @@ using UnityEngine;
 
 public static class ExtensionMethod
 {
-    public static Object Instantiate(this Object thisObj, Object original, Transform parent, bool instantiateInWorldSpace, GameplayEffectScriptableObject damageEffect, GameObject instigator, LayerMask layerMask)
+    public static Object Instantiate(this Object thisObj, Object original, Vector3 position, Quaternion rotation, bool instantiateInWorldSpace, GameplayEffectScriptableObject damageEffect, GameObject instigator, LayerMask layerMask)
     {
-        GameObject particleSystem = Object.Instantiate(original, parent, instantiateInWorldSpace) as GameObject;
-
-        particleSystem.transform.localPosition = Vector3.zero;
-        particleSystem.transform.localRotation = Quaternion.identity;
+        GameObject particleSystem = Object.Instantiate(original, position, rotation) as GameObject;
 
         if(particleSystem.TryGetComponent<ParticleDamage>(out var component))
         {

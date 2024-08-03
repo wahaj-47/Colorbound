@@ -402,6 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaf7fdeba4db7948846d868c3ca65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
   abilityOne: {fileID: 11400000, guid: cdb9a862468493446aefb4ae8ec8f7ca, type: 2}
   abilityTwo: {fileID: 0}
   abilityThree_A: {fileID: 0}
@@ -508,12 +511,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -610371485, guid: 5be09ec7749b96c41a6f5a38bc8e6ea3, type: 3}
+  m_Sprite: {fileID: -1489522276, guid: 03eb967b723dfe24186d06a172727190, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.17}
+  m_Size: {x: 0.8125, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
