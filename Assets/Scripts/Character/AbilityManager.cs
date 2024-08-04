@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using AbilitySystem;
 using AbilitySystem.Authoring;
@@ -11,9 +12,9 @@ using UnityEngine.Events;
 public class AbilityManager : MonoBehaviour, IDamageable
 {
     public enum EAbility {One, Two, Three, Four};
-    
+
     [Header("Type")]
-    public GameplayTagScriptableObject typeTag;
+    public GameplayTagScriptableObject type;
 
     [Header("Masks")]
     public LayerMask whatIsPlayer;
@@ -33,6 +34,7 @@ public class AbilityManager : MonoBehaviour, IDamageable
     public AbstractAbilityScriptableObject hunt;
 
     private AbilitySystemCharacter AbilitySystemComponent;
+    public GameplayTagScriptableObject typeTag { get => type; }
 
     private void Awake()
     {
@@ -81,10 +83,8 @@ public class AbilityManager : MonoBehaviour, IDamageable
     public void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator)
     {
         GameplayEffectSpec damageEffectSpec = AbilitySystemComponent.MakeOutgoingSpec(damageEffect);
-        
-        if(damageEffect.gameplayEffectTags.AssetTag.Parent == typeTag) return;
-        
         AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(damageEffectSpec);
+        
         if((whatIsPlayer.value & (1 << gameObject.layer)) > 0)
             StartCoroutine(Immune());
     }

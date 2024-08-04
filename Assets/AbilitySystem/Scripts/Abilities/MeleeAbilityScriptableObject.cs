@@ -1,15 +1,15 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using AbilitySystem;
 using AbilitySystem.Authoring;
-using Unity.VisualScripting;
+using AYellowpaper.SerializedCollections;
+using GameplayTag.Authoring;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Melee Attack Ability")]
 public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
 {
-    public GameplayEffectScriptableObject Damage;
+    [SerializeField]
+    public SerializedDictionary<GameplayTagScriptableObject, GameplayEffectScriptableObject> Damage;
     public float Range;
     public LayerMask Layers;
     /// <summary>
@@ -90,7 +90,11 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
                         // Adding impulse to the hit object
                         CharacterMovementComponent.AddVelocity(Owner.transform.forward * 10.0f);
                     }
-                    damageable.Damage((this.Ability as MeleeAbilityScriptableObject).Damage, Owner.gameObject);
+
+                    if((this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.typeTag, out GameplayEffectScriptableObject damageEffect))
+                    {
+                        damageable.Damage(damageEffect, Owner.gameObject);
+                    }
                 }
             }
 

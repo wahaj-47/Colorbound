@@ -29,7 +29,14 @@ MonoBehaviour:
       IgnoreTags: []
   Cost: {fileID: 11400000, guid: 7c43598eb4552564f8f39e80b933c6d5, type: 2}
   Cooldown: {fileID: 11400000, guid: 29fe9c13a393d6e47bda27210f2158e8, type: 2}
-  Damage: {fileID: 11400000, guid: bf1af9a038c172648ba0ff86c9ff6db0, type: 2}
+  Damage:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: dff561be8482afd45bcfcc1d4bacb7e4, type: 2}
+      Value: {fileID: 11400000, guid: bf1af9a038c172648ba0ff86c9ff6db0, type: 2}
+    - Key: {fileID: 11400000, guid: fbddf6910df7c6a42832e6dfdd5ab9dd, type: 2}
+      Value: {fileID: 11400000, guid: bf1af9a038c172648ba0ff86c9ff6db0, type: 2}
+    - Key: {fileID: 11400000, guid: 1dec66ea4dbdd3d429045a986ab1580b, type: 2}
+      Value: {fileID: 11400000, guid: bf1af9a038c172648ba0ff86c9ff6db0, type: 2}
   Range: 1
   Layers:
     serializedVersion: 2

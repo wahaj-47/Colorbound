@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using AbilitySystem;
 using AbilitySystem.Authoring;
+using AYellowpaper.SerializedCollections;
+using GameplayTag.Authoring;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Ranged Attack Ability")]
 public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
 {
-    public GameplayEffectScriptableObject Damage;
+    public SerializedDictionary<GameplayTagScriptableObject, GameplayEffectScriptableObject> Damage;
     public GameObject AttackPrefab;
     public LayerMask Layers;
     /// <summary>
@@ -84,8 +86,7 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
                 (this.Ability as RangedAbilityScriptableObject).AttackPrefab, // Particle effect to spawn
                 _attackPoint.transform.position, // Instigator position
                 _attackPoint.transform.rotation, // Instigator rotation
-                true, // Instantiate in world space
-                (this.Ability as RangedAbilityScriptableObject).Damage, // Damage effect to apply
+                ref (this.Ability as RangedAbilityScriptableObject).Damage, // Damage effect to apply
                 this.Owner.gameObject, // Instigator
                 (this.Ability as RangedAbilityScriptableObject).Layers // Layer mask for detecting collisions
             );
