@@ -45,10 +45,12 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
 
     // Move input
     private Vector3 _moveInputVector;
+    public Vector3 MoveInputVector => _moveInputVector;
 
     // Jump input
     private bool _jumpRequested = false;
     private bool _jumpConsumed = false;
+    public bool JumpConsumed => _jumpConsumed;
     private bool _jumpedThisFrame = false;
     private float _timeSinceJumpRequested = Mathf.Infinity;
     private float _timeSinceLastAbleToJump = 0f;
@@ -56,6 +58,7 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
     // Dash input
     private bool _dashRequested = false;
     private bool _dashConsumed = false;
+    public bool DashConsumed => _dashConsumed;
     private bool _dashedThisFrame = false;
     private float _timeSinceDashRequested = Mathf.Infinity;
     private float _timeSinceLastAbleToDash = 0f;

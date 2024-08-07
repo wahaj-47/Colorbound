@@ -10,7 +10,6 @@ public class AIController : MonoBehaviour
 {
     private NavMeshAgent Agent;
     private CharacterMovement CharacterMovement;
-    private CharacterAnimation CharacterAnimation;
     private PlayerCharacterInputs _characterInputs;
     private AbilityManager CharacterAbilityManager;
 
@@ -28,12 +27,6 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        if(!gameObject.TryGetComponent<CharacterAnimation>(out var outCharacterAnimation))
-        {
-            Debug.Log("Animation component missing");
-            return;
-        }
-
         if(!gameObject.TryGetComponent<AbilityManager>(out var outCharacterAbilityManager))
         {
             Debug.Log("Missing ability system component");
@@ -42,7 +35,6 @@ public class AIController : MonoBehaviour
 
         Agent = outAgent;
         CharacterMovement = outCharacterMovement;
-        CharacterAnimation = outCharacterAnimation;
         CharacterAbilityManager = outCharacterAbilityManager;
     }
 
@@ -69,8 +61,6 @@ public class AIController : MonoBehaviour
 
         // Apply inputs to character
         CharacterMovement.SetInputs(ref _characterInputs);
-        // Apply inputs to animator
-        CharacterAnimation.SetParams(ref _characterInputs);
     }
 
     public void Jump()

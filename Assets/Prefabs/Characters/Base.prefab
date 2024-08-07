@@ -280,7 +280,7 @@ MonoBehaviour:
   Motor: {fileID: 8572215790216454}
   MaxStableMoveSpeed: 5
   StableMovementSharpness: 15
-  OrientationSharpness: 100
+  OrientationSharpness: 20
   MaxAirMoveSpeed: 5
   AirAccelerationSpeed: 5
   Drag: 0.1
@@ -308,6 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e94baf3ddbbf9499e4802b774f6968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Movement: {fileID: 324034610556358459}
+  Motor: {fileID: 8572215790216454}
   animator: {fileID: 6857822096570611186}
 --- !u!114 &8700483765176717281
 MonoBehaviour:
@@ -450,6 +452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaf7fdeba4db7948846d868c3ca65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   abilityOne: {fileID: 0}
   abilityTwo: {fileID: 0}
   abilityThree_A: {fileID: 0}

@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public Color PlayerColor => _playerColor;
     private GameObject _currentCharacter;
     private CharacterMovement CharacterMovement;
-    private CharacterAnimation CharacterAnimation;
     private AbilityManager CharacterAbilityManager;
     private PlayerCharacterInputs _characterInputs;
 
@@ -47,12 +46,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(!character.TryGetComponent<CharacterAnimation>(out var outCharacterAnimation))
-        {
-            Debug.Log("Animation component missing");
-            return;
-        }
-
         if(!character.TryGetComponent<AbilityManager>(out var outCharacterAbilityManager))
         {
             Debug.Log("Missing ability manager component");
@@ -60,11 +53,9 @@ public class PlayerController : MonoBehaviour
         }
 
         CharacterMovement = outCharacterMovement;        
-        CharacterAnimation = outCharacterAnimation;
         CharacterAbilityManager = outCharacterAbilityManager;
 
         CharacterMovement.SetInputs(ref _characterInputs);
-        CharacterAnimation.SetParams(ref _characterInputs);
 
         _currentCharacter = character;
 
@@ -83,7 +74,6 @@ public class PlayerController : MonoBehaviour
 
         PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
         CharacterMovement.SetInputs(ref characterInputs);
-        CharacterAnimation.SetParams(ref characterInputs);
     }
 
     public void OnNextCharacter(InputAction.CallbackContext context)
@@ -118,8 +108,6 @@ public class PlayerController : MonoBehaviour
 
         // Apply inputs to character
         CharacterMovement.SetInputs(ref _characterInputs);
-        // Apply inputs to animator
-        CharacterAnimation.SetParams(ref _characterInputs);
     }
 
     public void OnJump(InputAction.CallbackContext context)

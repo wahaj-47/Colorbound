@@ -5,25 +5,29 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
+    public CharacterMovement Movement;
+    public KinematicCharacterMotor Motor;
     public Animator animator;
-    private Vector2 _moveDirection;
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Velocity", _moveDirection.magnitude);
+        Vector3 moveDirection = Movement.MoveInputVector;
 
-        if(_moveDirection.magnitude != 0)
+        if(Motor.Velocity.magnitude != 0)
+            animator.SetFloat("Velocity", moveDirection.magnitude);
+        else
+            animator.SetFloat("Velocity", 0);
+
+        if(moveDirection.magnitude != 0)
         {
-            animator.SetFloat("MoveX", _moveDirection.x);
-            animator.SetFloat("MoveY", _moveDirection.y);
+            animator.SetFloat("MoveX", moveDirection.x);
+            animator.SetFloat("MoveY", moveDirection.z);
         }
-    }
 
-    public void SetParams(ref PlayerCharacterInputs animationParams)
-    {
-        // Clamp input
-        Vector2 moveDirection = Vector2.ClampMagnitude(new Vector2(animationParams.MoveAxisRight, animationParams.MoveAxisForward), 1f);
-        _moveDirection = moveDirection;
+        animator.SetBool("Jump", Movement.JumpConsumed && !Motor.GroundingStatus.IsStableOnGround);
+        animator.SetFloat("VVelocity", Motor.Velocity.y);
+
+        animator.SetBool("Dash", Movement.DashConsumed && moveDirection.magnitude != 0);
     }
 }
