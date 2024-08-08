@@ -6,6 +6,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    public GameplayTagScriptableObject typeTag {get;}
+    public GameplayTagScriptableObject TypeTag {get;}
     void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator);
 }

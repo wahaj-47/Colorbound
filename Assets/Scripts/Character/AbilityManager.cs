@@ -34,7 +34,7 @@ public class AbilityManager : MonoBehaviour, IDamageable
     public AbstractAbilityScriptableObject hunt;
 
     private AbilitySystemCharacter AbilitySystemComponent;
-    public GameplayTagScriptableObject typeTag { get => type; }
+    public GameplayTagScriptableObject TypeTag { get => type; }
 
     private void Awake()
     {

@@ -6,6 +6,9 @@ public class AnimationClipNamingWindow : EditorWindow
     private Object[] selectedSprites;
     private string[] animationNames;
     private string outputFolderPath;
+    private int animationLength = 1;
+    private int spriteSkipCount = 0;
+    private Vector2 scrollPosition;
 
     [MenuItem("Tools/Create Animations From Selected Sprites")]
     public static void ShowWindow()
@@ -13,7 +16,7 @@ public class AnimationClipNamingWindow : EditorWindow
         var window = GetWindow<AnimationClipNamingWindow>();
         window.titleContent = new GUIContent("Create Animations");
         window.selectedSprites = Selection.objects;
-        window.animationNames = new string[window.selectedSprites.Length];
+        window.animationNames = new string[window.selectedSprites.Length / window.animationLength];
         window.outputFolderPath = "Assets"; // Default to Assets folder
         window.InitializeNames();
         window.Show();
@@ -21,12 +24,9 @@ public class AnimationClipNamingWindow : EditorWindow
 
     private void InitializeNames()
     {
-        for (int i = 0; i < selectedSprites.Length; i++)
+        for (int i = 0; i < animationNames.Length; i++)
         {
-            if (selectedSprites[i] is Sprite sprite)
-            {
-                animationNames[i] = sprite.name; // Default to sprite name
-            }
+            animationNames[i] = "Animation_" + i; // Default to "Animation_X"
         }
     }
 
@@ -54,39 +54,50 @@ public class AnimationClipNamingWindow : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
-        // Display the list of sprites with input fields
-        for (int i = 0; i < selectedSprites.Length; i++)
+        // Animation length and sprite skip count fields
+        animationLength = Mathf.Max(EditorGUILayout.IntField("Animation Length", animationLength), 1);
+        spriteSkipCount = EditorGUILayout.IntField("Sprites to Skip", spriteSkipCount);
+
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
+        // Show frames that will be included in each animation
+        GUILayout.Label("Preview of Frames in Animations:");
+        for (int i = 0; i < selectedSprites.Length / animationLength; i++)
         {
-            if (selectedSprites[i] is Sprite sprite)
+            GUILayout.BeginHorizontal();
+
+            for (int j = 0; j < animationLength; j++)
             {
-                GUILayout.BeginHorizontal();
-
-                // Display the sprite preview
-                GUILayout.Label(AssetPreview.GetAssetPreview(sprite), GUILayout.Width(50), GUILayout.Height(50));
-
-                // Display input field for the full animation name
-                animationNames[i] = EditorGUILayout.TextField(animationNames[i], GUILayout.Width(250));
-
-                GUILayout.EndHorizontal();
+                int spriteIndex = i + j * (spriteSkipCount + 1);
+                if (spriteIndex < selectedSprites.Length && selectedSprites[spriteIndex] is Sprite sprite)
+                {
+                    GUILayout.Label(AssetPreview.GetAssetPreview(sprite), GUILayout.Width(50), GUILayout.Height(50));
+                }
             }
+
+            Debug.Log(i);
+
+            // Display input field for the animation name
+            animationNames[i] = EditorGUILayout.TextField(animationNames[i], GUILayout.Width(250));
+
+            GUILayout.EndHorizontal();
         }
+
+        EditorGUILayout.EndScrollView();
 
         // Create animations when the button is clicked
         if (GUILayout.Button("Create Animations"))
         {
-            for (int i = 0; i < selectedSprites.Length; i++)
+            for (int i = 0; i < selectedSprites.Length / animationLength; i++)
             {
-                if (selectedSprites[i] is Sprite sprite)
-                {
-                    string animationName = animationNames[i];
-                    CreateAnimationClip(sprite, animationName);
-                }
+                string animationName = animationNames[i];
+                CreateAnimationClip(i, animationName);
             }
             Close();
         }
     }
 
-    private void CreateAnimationClip(Sprite sprite, string animationName)
+    private void CreateAnimationClip(int startIndex, string animationName)
     {
         // Create a new animation clip
         AnimationClip clip = new AnimationClip
@@ -94,13 +105,26 @@ public class AnimationClipNamingWindow : EditorWindow
             frameRate = 24 // Set the frame rate
         };
 
-        // Create the animation curve
-        ObjectReferenceKeyframe[] keyframes = new ObjectReferenceKeyframe[1];
-        keyframes[0] = new ObjectReferenceKeyframe
+        // Create the animation keyframes
+        ObjectReferenceKeyframe[] keyframes = new ObjectReferenceKeyframe[animationLength];
+        for (int j = 0; j < animationLength; j++)
         {
-            time = 0,
-            value = sprite
-        };
+            int spriteIndex = startIndex + j * (spriteSkipCount + 1);
+            if (spriteIndex < selectedSprites.Length && selectedSprites[spriteIndex] is Sprite sprite)
+            {
+                keyframes[j] = new ObjectReferenceKeyframe
+                {
+                    time = j / clip.frameRate,
+                    value = sprite
+                };
+            }
+            else
+            {
+                // If we run out of sprites, shorten the keyframe array
+                System.Array.Resize(ref keyframes, j);
+                break;
+            }
+        }
 
         // Create the animation binding
         EditorCurveBinding curveBinding = new EditorCurveBinding

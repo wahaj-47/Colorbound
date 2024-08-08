@@ -311,7 +311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e94baf3ddbbf9499e4802b774f6968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Movement: {fileID: 7306971843143784871}
+  Motor: {fileID: 4875710564113327006}
   animator: {fileID: 1014964337332487401}
+  MeleeExpiryTime: 1
 --- !u!114 &3787168660969841017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaf7fdeba4db7948846d868c3ca65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: {fileID: 11400000, guid: f1880847588e0a3478384b500bff7f5e, type: 2}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8

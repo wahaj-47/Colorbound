@@ -3,6 +3,7 @@ using AbilitySystem;
 using AbilitySystem.Authoring;
 using AYellowpaper.SerializedCollections;
 using GameplayTag.Authoring;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Melee Attack Ability")]
@@ -80,6 +81,11 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
                 yield break;
             }
 
+            if(this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
+            {
+                characterAnimation.Melee();
+            }
+
             Collider[] outHits = Physics.OverlapSphere(_attackPoint.position, (this.Ability as MeleeAbilityScriptableObject).Range, (this.Ability as MeleeAbilityScriptableObject).Layers);
             foreach (Collider hitObject in outHits)
             {
@@ -91,7 +97,7 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
                         CharacterMovementComponent.AddVelocity(Owner.transform.forward * 10.0f);
                     }
 
-                    if((this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.typeTag, out GameplayEffectScriptableObject damageEffect))
+                    if(damageable.TypeTag != null && (this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.TypeTag, out GameplayEffectScriptableObject damageEffect))
                     {
                         damageable.Damage(damageEffect, Owner.gameObject);
                     }

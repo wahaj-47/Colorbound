@@ -26,7 +26,7 @@ public class ParticleDamage : MonoBehaviour
     {
         if((whatIsDamaged.value & (1 << other.layer)) > 0 && other.TryGetComponent<IDamageable>(out var damageable))
         {
-            if(damageEffects.TryGetValue(damageable.typeTag, out GameplayEffectScriptableObject damageEffect))
+            if(damageEffects.TryGetValue(damageable.TypeTag, out GameplayEffectScriptableObject damageEffect))
             {
                 damageable.Damage(damageEffect, instigator);
             }
