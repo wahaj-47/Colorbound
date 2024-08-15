@@ -82,6 +82,11 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
                 yield break;
             }
 
+            if(this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
+            {
+                characterAnimation.Melee();
+            }
+
             this.Owner.Instantiate(
                 (this.Ability as RangedAbilityScriptableObject).AttackPrefab, // Particle effect to spawn
                 _attackPoint.transform.position, // Instigator position

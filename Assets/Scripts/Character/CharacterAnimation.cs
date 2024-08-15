@@ -20,6 +20,7 @@ public class CharacterAnimation : MonoBehaviour
 
     [Header("Melee")]
     public float MeleeExpiryTime = 1f;
+
     private Melee_Phase _MeleePhase = Melee_Phase.Melee_A;
     private Coroutine _MeleeTimer;
 

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ClampHealth
   m_EditorClassIdentifier: 
   PrimaryAttribute: {fileID: 11400000, guid: 58ebc3363e3e7c943b33769f8e2f9e38, type: 2}
+  MinAttribute: {fileID: 11400000, guid: ca3b631267eb895489857443e38dfbe8, type: 2}
   MaxAttribute: {fileID: 11400000, guid: 60a61e34c4adac04d97e0060529e6747, type: 2}

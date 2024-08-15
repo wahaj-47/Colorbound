@@ -64,6 +64,7 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
         /// <returns></returns>
         protected override IEnumerator ActivateAbility()
         {
+            Debug.Log($"Melee ability activated: {this.Ability.name}");
             // Apply cost and cooldown
             var cdSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cooldown);
             var costSpec = this.Owner.MakeOutgoingSpec(this.Ability.Cost);
@@ -91,14 +92,13 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
             {
                 if(hitObject.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    if(hitObject.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
-                    {
-                        // Adding impulse to the hit object
-                        CharacterMovementComponent.AddVelocity(Owner.transform.forward * 10.0f);
-                    }
-
                     if(damageable.TypeTag != null && (this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.TypeTag, out GameplayEffectScriptableObject damageEffect))
                     {
+                        if(hitObject.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
+                        {
+                            // Adding impulse to the hit object
+                            CharacterMovementComponent.AddVelocity(Owner.transform.forward * 20.0f);
+                        }
                         damageable.Damage(damageEffect, Owner.gameObject);
                     }
                 }

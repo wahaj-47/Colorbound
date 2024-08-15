@@ -12,7 +12,7 @@ using UnityEngine.InputSystem;
 public class AIStateMachine : BaseStateMachine
 {
     [HideInInspector]
-    public Transform target;
+    public Collider target;
     
     [HideInInspector]
     public Vector3 spawnPosition;

@@ -18,32 +18,29 @@ public class AICombatState : AIState
         (StateMachine as AIStateMachine).Controller.Hunt();
 
         targetAcquired = true;
-        agent.destination = (StateMachine as AIStateMachine).target.position;
+        agent.destination = (StateMachine as AIStateMachine).target.transform.position;
     }
 
     public override void UpdateState()
     {
         base.UpdateState();
 
-        if(targetAcquired)
+        if(targetAcquired && (StateMachine as AIStateMachine).target != null)
         {
-            agent.destination = (StateMachine as AIStateMachine).target.position;
+            agent.destination = (StateMachine as AIStateMachine).target.transform.position;
 
             if(dangerDetected)
             {
-                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.abilityOne.Range * 1.2f))
-                {
-                    agent.velocity *= -1;
-                    // (StateMachine as AIStateMachine).Controller.Jump();
-                    (StateMachine as AIStateMachine).Controller.Dash();
-                }
+                agent.velocity *= -1;
+                (StateMachine as AIStateMachine).Controller.Jump();
+                (StateMachine as AIStateMachine).Controller.Dash();
                 
                 dangerDetected = false;
             }
 
             if(!didAttack)
             {
-                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.abilityOne.Range))
+                if(HasReachedDestination((StateMachine as AIStateMachine).abilityManagerComponent.abilityOne.Range + (StateMachine as AIStateMachine).target.bounds.extents.magnitude))
                 {
                     StateMachine.StartCoroutine(AbilityOne());
                 }
@@ -73,5 +70,4 @@ public class AICombatState : AIState
         yield return new WaitForSeconds(0.2f);
         didAttack = false;
     }
-
 }

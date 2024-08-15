@@ -8,11 +8,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2040988106449437508, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: fbddf6910df7c6a42832e6dfdd5ab9dd,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: fbddf6910df7c6a42832e6dfdd5ab9dd,
+        type: 2}
     - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}
       propertyPath: abilityOne
       value: 
-      objectReference: {fileID: 11400000, guid: e23e506b8046d854f9b7253c3a93fba2,
+      objectReference: {fileID: 11400000, guid: 9f2a54bc5b11a484186fe100f823249f,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: abilityTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: 3126f71a012957c458a455b155c1a36b,
         type: 2}
     - target: {fileID: 2531383979886204848, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}

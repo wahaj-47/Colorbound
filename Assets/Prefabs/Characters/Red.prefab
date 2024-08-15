@@ -13,6 +13,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2040988106449437508, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: dff561be8482afd45bcfcc1d4bacb7e4,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: dff561be8482afd45bcfcc1d4bacb7e4,
+        type: 2}
     - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}
       propertyPath: melee

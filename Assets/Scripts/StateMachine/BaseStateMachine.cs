@@ -42,4 +42,9 @@ public class BaseStateMachine : MonoBehaviour
     {
         return null;
     }
+
+    public virtual void OnDestroy()
+    {
+        _currentState = null;
+    }
 }

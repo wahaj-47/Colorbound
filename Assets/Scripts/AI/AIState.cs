@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,11 @@ public class AIState : BaseState
         base.EnterState();
 
         StateMachine.StartCoroutine(FindTargetsWithDelay());
+    }
+
+    public override void UpdateState()
+    {
+        base.UpdateState();
     }
 
     public override void ExitState()
@@ -52,8 +58,8 @@ public class AIState : BaseState
         for(int i=0; i < targetsInViewRadius.Length; i++)
         {
             float smallestDist = Mathf.Infinity;
-            Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = target.position - StateMachine.transform.position;
+            Collider target = targetsInViewRadius[i];
+            Vector3 dirToTarget = target.transform.position - StateMachine.transform.position;
 
             if(
                 Vector3.Angle(StateMachine.transform.forward, dirToTarget.normalized) 
@@ -64,7 +70,6 @@ public class AIState : BaseState
                 {
                     if (hit.distance < smallestDist)
                     {
-
                         targetInRange = true;
                         
                         if(target.TryGetComponent<AbilityManager>(out var abilityManager))
@@ -84,7 +89,9 @@ public class AIState : BaseState
 
     public bool HasReachedDestination(float acceptanceRadius)
     {
-        return agent.remainingDistance != Mathf.Infinity && agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance < (acceptanceRadius + 1.25 * agent.radius);
+        return agent.remainingDistance != Mathf.Infinity 
+        && agent.pathStatus == NavMeshPathStatus.PathComplete 
+        && agent.remainingDistance < (acceptanceRadius + 1.25 * agent.radius);
     }
 
     public Vector3 RandomReachablePointInRadius(float radius, Vector3 position) {

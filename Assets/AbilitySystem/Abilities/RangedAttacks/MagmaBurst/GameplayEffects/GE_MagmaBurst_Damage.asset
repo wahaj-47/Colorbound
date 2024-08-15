@@ -25,8 +25,7 @@ MonoBehaviour:
     ConditionalGameplayEffects: []
   gameplayEffectTags:
     AssetTag: {fileID: 11400000, guid: b23cf619c9b53654993fbf6053626538, type: 2}
-    GrantedTags:
-    - {fileID: 0}
+    GrantedTags: []
     OngoingTagRequirements:
       RequireTags: []
       IgnoreTags: []

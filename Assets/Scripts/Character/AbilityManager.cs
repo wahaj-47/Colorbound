@@ -9,22 +9,14 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(AbilitySystemCharacter))]
-public class AbilityManager : MonoBehaviour, IDamageable
+public class AbilityManager : MonoBehaviour
 {
     public enum EAbility {One, Two, Three, Four};
-
-    [Header("Type")]
-    public GameplayTagScriptableObject type;
-
-    [Header("Masks")]
-    public LayerMask whatIsPlayer;
 
     [Header("Attacks")]
     public MeleeAbilityScriptableObject abilityOne;
     public RangedAbilityScriptableObject abilityTwo;
-    public MeleeAbilityScriptableObject abilityThree_A;
-    public MeleeAbilityScriptableObject abilityThree_B;
-    public MeleeAbilityScriptableObject abilityThree_C;
+    public MeleeAbilityScriptableObject[] abilityThree;
     public MeleeAbilityScriptableObject abilityFour;
 
     [Header("Events")]
@@ -34,7 +26,6 @@ public class AbilityManager : MonoBehaviour, IDamageable
     public AbstractAbilityScriptableObject hunt;
 
     private AbilitySystemCharacter AbilitySystemComponent;
-    public GameplayTagScriptableObject TypeTag { get => type; }
 
     private void Awake()
     {
@@ -58,10 +49,16 @@ public class AbilityManager : MonoBehaviour, IDamageable
             case EAbility.Two:
                 abilitySpec = abilityTwo ? abilityTwo.CreateSpec(AbilitySystemComponent) : null;
                 break;
+            
+            // Executing all possible abilities.
             case EAbility.Three:
-                // @TODO: Decide which ability to activate based on active gameplay tags
-                abilitySpec = abilityThree_A ? abilityThree_A.CreateSpec(AbilitySystemComponent) : null;
-                break;
+                for (int i = 0; i < abilityThree.Length; i++)
+                {
+                    abilitySpec = abilityThree[i].CreateSpec(AbilitySystemComponent);
+                    StartCoroutine(abilitySpec.TryActivateAbility());
+                }
+                return;
+
             case EAbility.Four:
                 abilitySpec = abilityFour ? abilityFour.CreateSpec(AbilitySystemComponent) : null;
                 break;
@@ -78,27 +75,6 @@ public class AbilityManager : MonoBehaviour, IDamageable
     {
         AbstractAbilitySpec abilitySpec = hunt.CreateSpec(AbilitySystemComponent);
         StartCoroutine(abilitySpec.TryActivateAbility());
-    }
-
-    public void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator)
-    {
-        GameplayEffectSpec damageEffectSpec = AbilitySystemComponent.MakeOutgoingSpec(damageEffect);
-        AbilitySystemComponent.ApplyGameplayEffectSpecToSelf(damageEffectSpec);
-        
-        if((whatIsPlayer.value & (1 << gameObject.layer)) > 0)
-            StartCoroutine(Immune());
-    }
-
-    private IEnumerator Immune()
-    {
-        if(TryGetComponent<NavMeshObstacle>(out var navMeshObstacle))
-        {
-            navMeshObstacle.enabled = true;
-            yield return new WaitForSeconds(0.7f);
-            navMeshObstacle.enabled = false;
-        }
-
-        yield break;
     }
 
 }

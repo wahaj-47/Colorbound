@@ -36,7 +36,7 @@ MonoBehaviour:
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,
         type: 2}
-      Multiplier: 10
+      Multiplier: 100
     - Attribute: {fileID: 11400000, guid: d83a59c7f885e4147af5dfa8f8f2cace, type: 2}
       ModifierOperator: 0
       ModifierMagnitude: {fileID: 11400000, guid: afbabb92ed6298043b96dbc03285fe81,

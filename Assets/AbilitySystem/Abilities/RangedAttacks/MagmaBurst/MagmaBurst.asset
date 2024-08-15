@@ -37,9 +37,9 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 9c658f421255bb84bb34db2ceca3684b, type: 2}
     - Key: {fileID: 11400000, guid: 1dec66ea4dbdd3d429045a986ab1580b, type: 2}
       Value: {fileID: 11400000, guid: 9c658f421255bb84bb34db2ceca3684b, type: 2}
-  AttackPrefab: {fileID: 1904969633916089562, guid: 72fe1164910e8a44ea9f076819969605,
+  AttackPrefab: {fileID: 2953618257510657, guid: a54518b724c0b6449b8a7e8dfa35c68b,
     type: 3}
   Layers:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 128
   GameplayEffect: {fileID: 11400000, guid: 7c43598eb4552564f8f39e80b933c6d5, type: 2}
