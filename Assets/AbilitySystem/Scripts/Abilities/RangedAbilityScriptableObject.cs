@@ -82,6 +82,12 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
                 yield break;
             }
 
+            if(this.Owner.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
+            {
+                // Adding impulse to the hit object
+                CharacterMovementComponent.AddVelocity(Owner.transform.forward * -10.0f);
+            }
+
             if(this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
             {
                 characterAnimation.Melee();
