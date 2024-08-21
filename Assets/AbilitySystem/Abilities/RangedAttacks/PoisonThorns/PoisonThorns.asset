@@ -31,11 +31,11 @@ MonoBehaviour:
   Cooldown: {fileID: 11400000, guid: 2bb77e56a261e2a45b76e3fdcbf50b5c, type: 2}
   Damage:
     _serializedList:
-    - Key: {fileID: 11400000, guid: dff561be8482afd45bcfcc1d4bacb7e4, type: 2}
+    - Key: {fileID: 11400000, guid: 1b2f15f52746f3e4e827b3f551c76789, type: 2}
       Value: {fileID: 11400000, guid: 4b57b1ee3f82d3d4d96a0098b01f9423, type: 2}
-    - Key: {fileID: 11400000, guid: fbddf6910df7c6a42832e6dfdd5ab9dd, type: 2}
+    - Key: {fileID: 11400000, guid: e24a131252773c04687df3417f8ece79, type: 2}
       Value: {fileID: 11400000, guid: 4b57b1ee3f82d3d4d96a0098b01f9423, type: 2}
-    - Key: {fileID: 11400000, guid: 1dec66ea4dbdd3d429045a986ab1580b, type: 2}
+    - Key: {fileID: 11400000, guid: 3ad87ec10c84c0140a6bed1df2c2ba26, type: 2}
       Value: {fileID: 11400000, guid: 4b57b1ee3f82d3d4d96a0098b01f9423, type: 2}
   AttackPrefab: {fileID: 8704683537401055189, guid: 1f90f3ef9321fea4cac7add4136bea65,
     type: 3}

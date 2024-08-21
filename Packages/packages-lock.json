@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.crashkonijn.goap": {
+      "version": "https://github.com/crashkonijn/GOAP.git?path=/Package#2.1.22",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.collections": "1.2.4"
+      },
+      "hash": "fe3d2ecfa31b205181ae372274d704c5d7c797c5"
+    },
     "com.sjai013.abilitysystem": {
       "version": "https://github.com/sjai013/unity-gameplay-ability-system.git#upm",
       "depth": 0,

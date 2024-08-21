@@ -6,21 +6,31 @@ using GameplayTag.Authoring;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(AbilitySystemCharacter))]
+[RequireComponent(typeof(AbilitySystemCharacter), typeof(NavMeshAgent))]
 public class ColorboundCharacter : MonoBehaviour, IDamageable
 {
     [Header("Type")]
-    public GameplayTagScriptableObject type;
-    public GameplayTagScriptableObject TypeTag => type;
-
-    [Header("Masks")]
-    public LayerMask whatIsPlayer;
+    public TypeTagScriptableObject type;
+    public TypeTagScriptableObject TypeTag => type;
 
     private AbilitySystemCharacter AbilitySystemComponent;
+    private NavMeshAgent NavMeshAgent;
 
     private void Awake()
     {
         AbilitySystemComponent = GetComponent<AbilitySystemCharacter>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        NavMeshAgent.updatePosition = false;
+        NavMeshAgent.updateRotation = false;
+    }
+
+    private void Update()
+    {
+        NavMeshAgent.nextPosition = transform.position;
     }
 
     public void Damage(GameplayEffectScriptableObject damageEffect, GameObject instigator)

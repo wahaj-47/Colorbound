@@ -12,7 +12,7 @@ PrefabInstance:
         type: 3}
       propertyPath: type
       value: 
-      objectReference: {fileID: 11400000, guid: 1dec66ea4dbdd3d429045a986ab1580b,
+      objectReference: {fileID: 11400000, guid: e24a131252773c04687df3417f8ece79,
         type: 2}
     - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}
@@ -29,6 +29,18 @@ PrefabInstance:
     - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
         type: 3}
       propertyPath: abilityTwo
+      value: 
+      objectReference: {fileID: 11400000, guid: ef0760d08b4502e44be93d4da6b9b356,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: ActiveAbilities._serializedList.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f2a54bc5b11a484186fe100f823249f,
+        type: 2}
+    - target: {fileID: 2337416944103483778, guid: 32066b4be3ff7d947913d056244436e9,
+        type: 3}
+      propertyPath: ActiveAbilities._serializedList.Array.data[1].Value
       value: 
       objectReference: {fileID: 11400000, guid: ef0760d08b4502e44be93d4da6b9b356,
         type: 2}

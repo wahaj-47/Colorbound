@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using AbilitySystem;
 using AbilitySystem.Authoring;
 using AYellowpaper.SerializedCollections;
 using GameplayTag.Authoring;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Ranged Attack Ability")]
@@ -43,7 +40,7 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
         public RangedAbilitySpec(AbstractAbilityScriptableObject abilitySO, AbilitySystemCharacter owner) : base(abilitySO, owner)
         {
             _attackPoint = Owner.transform.Find("AttackPoint_Melee");
-            if(_attackPoint == null)
+            if (_attackPoint == null)
             {
                 Debug.Log("Failed to find attack point");
             }
@@ -52,7 +49,7 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
         /// <summary>
         /// What to do when the ability is cancelled.  We don't care about there for this example.
         /// </summary>
-        public override void CancelAbility() 
+        public override void CancelAbility()
         {
         }
 
@@ -76,19 +73,19 @@ public class RangedAbilityScriptableObject : AbstractAbilityScriptableObject
             var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as RangedAbilityScriptableObject).GameplayEffect);
             this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
 
-            if(_attackPoint == null)
+            if (_attackPoint == null)
             {
                 Debug.Log("Missing attack point");
                 yield break;
             }
 
-            if(this.Owner.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
+            if (this.Owner.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
             {
                 // Adding impulse to the hit object
                 CharacterMovementComponent.AddVelocity(Owner.transform.forward * -10.0f);
             }
 
-            if(this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
+            if (this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
             {
                 characterAnimation.Melee();
             }

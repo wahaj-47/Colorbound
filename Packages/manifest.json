@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.crashkonijn.goap": "https://github.com/crashkonijn/GOAP.git?path=/Package#2.1.22",
     "com.sjai013.abilitysystem": "https://github.com/sjai013/unity-gameplay-ability-system.git#upm",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "1.1.5",

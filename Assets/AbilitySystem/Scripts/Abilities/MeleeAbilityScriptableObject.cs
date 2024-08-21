@@ -3,7 +3,6 @@ using AbilitySystem;
 using AbilitySystem.Authoring;
 using AYellowpaper.SerializedCollections;
 using GameplayTag.Authoring;
-using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Gameplay Ability System/Abilities/Melee Attack Ability")]
@@ -42,7 +41,7 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
         public MeleeAbilitySpec(AbstractAbilityScriptableObject abilitySO, AbilitySystemCharacter owner) : base(abilitySO, owner)
         {
             _attackPoint = Owner.transform.Find("AttackPoint_Melee");
-            if(_attackPoint == null)
+            if (_attackPoint == null)
             {
                 Debug.Log("Failed to find attack point");
             }
@@ -51,7 +50,7 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
         /// <summary>
         /// What to do when the ability is cancelled.  We don't care about there for this example.
         /// </summary>
-        public override void CancelAbility() 
+        public override void CancelAbility()
         {
         }
 
@@ -76,13 +75,13 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
             var effectSpec = this.Owner.MakeOutgoingSpec((this.Ability as MeleeAbilityScriptableObject).GameplayEffect);
             this.Owner.ApplyGameplayEffectSpecToSelf(effectSpec);
 
-            if(_attackPoint == null)
+            if (_attackPoint == null)
             {
                 Debug.Log("Missing attack point");
                 yield break;
             }
 
-            if(this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
+            if (this.Owner.TryGetComponent<CharacterAnimation>(out var characterAnimation))
             {
                 characterAnimation.Melee();
             }
@@ -90,11 +89,11 @@ public class MeleeAbilityScriptableObject : AbstractAbilityScriptableObject
             Collider[] outHits = Physics.OverlapSphere(_attackPoint.position, (this.Ability as MeleeAbilityScriptableObject).Range, (this.Ability as MeleeAbilityScriptableObject).Layers);
             foreach (Collider hitObject in outHits)
             {
-                if(hitObject.TryGetComponent<IDamageable>(out var damageable))
+                if (hitObject.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    if(damageable.TypeTag != null && (this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.TypeTag, out GameplayEffectScriptableObject damageEffect))
+                    if (damageable.TypeTag != null && (this.Ability as MeleeAbilityScriptableObject).Damage.TryGetValue(damageable.TypeTag, out GameplayEffectScriptableObject damageEffect))
                     {
-                        if(hitObject.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
+                        if (hitObject.TryGetComponent<CharacterMovement>(out var CharacterMovementComponent))
                         {
                             // Adding impulse to the hit object
                             CharacterMovementComponent.AddVelocity(Owner.transform.forward * 20.0f);

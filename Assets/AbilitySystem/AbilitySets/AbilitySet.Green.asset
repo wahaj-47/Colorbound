@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53200433ca1e1d643866b76d29e43f83, type: 3}
+  m_Name: AbilitySet.Green
+  m_EditorClassIdentifier: 
+  ActiveAbilities:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 3d54caaa302f5294594e4d6de0d29743, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: ef0760d08b4502e44be93d4da6b9b356, type: 2}
+  PassiveAbilities: []
